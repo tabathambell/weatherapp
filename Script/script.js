@@ -3,8 +3,8 @@ $(document).ready(function() {
     $("#weatherButton").click(function() {
         var cityName = $("input.form-control").val();
         
-        var url = "http://api.openweathermap.org/data/2.5/weather?q=" + cityName + "&appid=737d27db0b50c8b167d4a3cda67efcfe";
-        var foreUrl = "http://api.openweathermap.org/data/2.5/forecast/daily?q=" + cityName + "&cnt=5&appid=737d27db0b50c8b167d4a3cda67efcfe";
+        var url = "api.openweathermap.org/data/2.5/weather?q=" + cityName + "&appid=737d27db0b50c8b167d4a3cda67efcfe";
+        var foreUrl = "http://api.openweathermap.org/data/2.5/forecast?q=" + cityName + "&cnt=5&appid=737d27db0b50c8b167d4a3cda67efcfe";
     
         // Gets the current weather data.
         $.get(url, function(data) {
@@ -47,10 +47,9 @@ $(document).ready(function() {
             for (var i = 0; i < data.list.length; i++) {
                 var icon = "http://openweathermap.org/img/wn/" + data.list[i].weather.icon + "@2x.png";
                 var date = moment.unix(data.list[i].dt).format("MMMM Do, YYYY");
-                var dayTemp = plzNotKelvin(data.list[i].temp.day);
-                var nightTemp = plzNotKelvin(data.list[i].temp.night);
+                var temp = plzNotKelvin(data.list[i].temp);
                 var humidity = data.list[i].humidity;
-                var windSpeed = mphWind(data.list[i].speed);
+                var windSpeed = mphWind(data.list[i].wind.speed);
 
                 // TODO: Place the weather information into appropriate HTML elements.
             }
