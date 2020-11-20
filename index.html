@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="CSS/style.css" rel="stylesheet" />
     <link
       rel="stylesheet"
       href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
@@ -27,16 +28,21 @@
               <button class="btn btn-outline-success my-2 my-sm-0" type="submit" id="weatherButton">Search</button>
             </form>
           </nav>
-        <div id="response-container"></div>
-
-        <p class="data">This is my HTML5 Boilerplate.</p>
-        <p class="actual">This is my HTML5 Boilerplate.</p>
+        <div class="container">
+            <div class="row">
+                <div class="col-3 history"></div>
+                <div class="col content"></div>
+                <div class="row current"></div>
+                <div class="row forecast"></div>
+                    <div class="card-body"></div>
+            </div>
+        </div>
 
         <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js" 
             integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ==" 
             crossorigin="anonymous">
         </script>
         <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-        <script src="script.js"></script>
+        <script src="Script/script.js"></script>
     </body>
 </html>
