@@ -1,4 +1,8 @@
 $(document).ready(function() {
+    var citiesList = "";
+    if (localStorage.getItem("citiesList") !== null) {
+        citiesList = localStorage.getItem("citiesList");
+    }
 
     $("#weatherButton").click(function() {
         var cityName = $("input.form-control").val();
@@ -8,6 +12,8 @@ $(document).ready(function() {
     
         // Gets the current weather data.
         $.get(url, function(data) {
+
+
             var city = data.name;
             var icon = "http://openweathermap.org/img/wn/" + data.weather[0].icon + "@2x.png";
             var temp = plzNotKelvin(data.main.temp);
@@ -72,4 +78,11 @@ function plzNotKelvin(degreesK) {
 // Function to convert wind speed from meters per second into miles per hour.
 function mphWind(windSpeedMS) {
     return Math.round(windSpeedMS * 2.237);
+}
+
+function makeCityButtons(list) {
+    var listArray = list.split(",");
+        for (i = 0; i < listArray.length; i++) {
+            $(".history").append("<button class='city'>" + listArray[i] + "</button>")
+        }
 }
