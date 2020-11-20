@@ -1,11 +1,11 @@
 $(document).ready(function() {
 
     $("#weatherButton").click(function() {
-            var cityName = $("input.form control").val();
-
-            var url = "http://api.openweathermap.org/data/2.5/weather?q=" + cityName + "&appid=737d27db0b50c8b167d4a3cda67efcfe";
-            var foreUrl = "http://api.openweathermap.org/data/2.5/forecast/daily?q=" + cityName + "&cnt=5&appid=737d27db0b50c8b167d4a3cda67efcfe";
+        var cityName = $("input.form-control").val();
         
+        var url = "http://api.openweathermap.org/data/2.5/weather?q=" + cityName + "&appid=737d27db0b50c8b167d4a3cda67efcfe";
+        var foreUrl = "http://api.openweathermap.org/data/2.5/forecast/daily?q=" + cityName + "&cnt=5&appid=737d27db0b50c8b167d4a3cda67efcfe";
+    
         // Gets the current weather data.
         $.get(url, function(data) {
             var city = data.name;
@@ -36,10 +36,10 @@ $(document).ready(function() {
                 }
             });
 
-            // Place the weather information into appropriate HTML elements.
+            // TODO: Place the weather information into appropriate HTML elements.
             $("img.current").attr("src", icon);
-            $("h1.current").text(temp);
-            $("p.current").html("Feels Like: " + feelsLike + "<br />");
+            $("h1.current").text(temp + "F");
+            $("p.current").html("Feels Like: " + feelsLike + " F<br />Humidity: " + humidity + "%<br />" + "Wind Speed: " + windSpeed + "mph");
         });
 
         // Gets the forecast weather data.
@@ -51,6 +51,8 @@ $(document).ready(function() {
                 var nightTemp = plzNotKelvin(data.list[i].temp.night);
                 var humidity = data.list[i].humidity;
                 var windSpeed = mphWind(data.list[i].speed);
+
+                // TODO: Place the weather information into appropriate HTML elements.
             }
         });
     });

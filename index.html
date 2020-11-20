@@ -3,7 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="CSS/style.css" rel="stylesheet" />
     <link
       rel="stylesheet"
       href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
@@ -18,6 +17,7 @@
       href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap"
       rel="stylesheet"
     />
+    <link href="CSS/style.css" rel="stylesheet" />
     <title>Tabatha's Weather App</title>
 </head>
     <body>
@@ -25,17 +25,63 @@
             <a class="navbar-brand">Tabatha's Weather App</a>
             <form class="form-inline">
               <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-              <button class="btn btn-outline-success my-2 my-sm-0" type="submit" id="weatherButton">Search</button>
+              <button class="btn btn-outline-success my-2 my-sm-0" type="button" id="weatherButton">Search</button>
             </form>
           </nav>
         <div class="container">
-            <div class="row">
-                <div class="col-3 history"></div>
-                <div class="col content"></div>
-                <div class="row current"></div>
-                <div class="row forecast"></div>
-                    <div class="card-body"></div>
+          <div class="row">
+            <div class="col-3 history"></div>
+            <div class="col content">
+              <div class="row">
+
+                <div class="card">
+                  <img class="card-img-top current" src="" />
+                  <div class="card-body">
+                    <h1 class="card-title current">Current Weather</h1>
+                    <p class="card-text current">Stuff stuff stuff.</p>
+                  </div>
+                </div>
+
+              </div>
+
+              <div class="row">
+                <div class="card">
+                  <div class="card-body">
+                    <h1 class="card-title">Forecast</h1>
+                    <p class="card-text">Stuff stuff stuff.</p>
+                  </div>
+                </div>
+
+                <div class="card">
+                  <div class="card-body">
+                    <h1 class="card-title">Forecast</h1>
+                    <p class="card-text">Stuff stuff stuff.</p>
+                  </div>
+                </div>
+
+                <div class="card">
+                  <div class="card-body">
+                    <h1 class="card-title">Forecast</h1>
+                    <p class="card-text">Stuff stuff stuff.</p>
+                  </div>
+                </div>
+
+                <div class="card">
+                  <div class="card-body">
+                    <h1 class="card-title">Forecast</h1>
+                    <p class="card-text">Stuff stuff stuff.</p>
+                  </div>
+                </div>
+
+                <div class="card">
+                  <div class="card-body">
+                    <h1 class="card-title">Forecast</h1>
+                    <p class="card-text">Stuff stuff stuff.</p>
+                  </div>
+                </div>
+              
             </div>
+          </div>
         </div>
 
         <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js" 
