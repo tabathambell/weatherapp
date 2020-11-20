@@ -2,19 +2,31 @@ $(document).ready(function() {
     var citiesList = "";
     if (localStorage.getItem("citiesList") !== null) {
         citiesList = localStorage.getItem("citiesList");
+        makeCityButtons(citiesList);
     }
 
-    $("#weatherButton").click(function() {
+    $("#weatherButton .city").click(function() {
+        var cityName = "";
+        if ($(this).hasClass("city")) {
+            cityName = $(this).val();
+        } else {
+            cityName = $("input.form control").val();
+        }
+
         var cityName = $("input.form-control").val();
-        
         var url = "http://api.openweathermap.org/data/2.5/weather?q=" + cityName + "&appid=737d27db0b50c8b167d4a3cda67efcfe";
-        
     
         // Gets the current weather data.
         $.get(url, function(data) {
+            if (citiesList == "") {
+                citiesList += cityName;
+            } else {
+                citiesList += "," + cityName;
+            }
 
+            localStorage.setItem("citiesList", citiesList);
+            $(".history").append("<button class='city'>" + cityName + "</button>")
 
-            var city = data.name;
             var icon = "http://openweathermap.org/img/wn/" + data.weather[0].icon + "@2x.png";
             var temp = plzNotKelvin(data.main.temp);
             var feelsLike = plzNotKelvin(data.main.feels_like);
