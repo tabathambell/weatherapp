@@ -3,8 +3,8 @@
 $(document).ready(function() {
 
     $("#weatherButton").click(function() {
-    var url = "http://api.openweathermap.org/data/2.5/weather?q=edmonton&appid=737d27db0b50c8b167d4a3cda67efcfe";
-    var foreUrl = "http://api.openweathermap.org/data/2.5/forecast/daily?q=edmonton&cnt=5&appid=737d27db0b50c8b167d4a3cda67efcfe";
+        var url = "http://api.openweathermap.org/data/2.5/weather?q=edmonton&appid=737d27db0b50c8b167d4a3cda67efcfe";
+        var foreUrl = "http://api.openweathermap.org/data/2.5/forecast/daily?q=edmonton&cnt=5&appid=737d27db0b50c8b167d4a3cda67efcfe";
     
     // Gets the current weather data.
     $.get(url, function(data) {

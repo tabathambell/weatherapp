@@ -20,9 +20,13 @@
     <title>Tabatha's Weather App</title>
 </head>
     <body>
-        <h1>Header</h1>
-        <input type="text" id="searchCity" value="city" />
-        <button id="weatherButton">Search</button>
+        <nav class="navbar navbar-dark bg-dark">
+            <a class="navbar-brand">Tabatha's Weather App</a>
+            <form class="form-inline">
+              <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+              <button class="btn btn-outline-success my-2 my-sm-0" type="submit" id="weatherButton">Search</button>
+            </form>
+          </nav>
         <div id="response-container"></div>
 
         <p class="data">This is my HTML5 Boilerplate.</p>
