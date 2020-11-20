@@ -4,7 +4,7 @@ $(document).ready(function() {
         var cityName = $("input.form-control").val();
         
         var url = "http://api.openweathermap.org/data/2.5/weather?q=" + cityName + "&appid=737d27db0b50c8b167d4a3cda67efcfe";
-        var foreUrl = "http://api.openweathermap.org/data/2.5/forecast?q=" + cityName + "&cnt=5&appid=737d27db0b50c8b167d4a3cda67efcfe";
+        
     
         // Gets the current weather data.
         $.get(url, function(data) {
@@ -18,6 +18,7 @@ $(document).ready(function() {
             var lon = data.coord.lon;
 
             var uvUrl = "http://api.openweathermap.org/data/2.5/uvi?lat=" + lat + "&lon=" + lon + "&appid=737d27db0b50c8b167d4a3cda67efcfe";
+            var foreUrl = "http://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon=" + lon + "&exclude=current,minutely,hourly,alerts&appid=737d27db0b50c8b167d4a3cda67efcfe";
 
             // Gets the UV Index.
             $.get(uvUrl, function(data) {
@@ -40,23 +41,26 @@ $(document).ready(function() {
             $("img.current").attr("src", icon);
             $("h1.current").text(temp + "F");
             $("p.current").html("Feels Like: " + feelsLike + " F<br />Humidity: " + humidity + "%<br />" + "Wind Speed: " + windSpeed + "mph");
-        });
 
-        // Gets the forecast weather data.
-        $.get(foreUrl, function(data) {
-            for (var i = 0; i < data.list.length; i++) {
-                var icon = "http://openweathermap.org/img/wn/" + data.list[i].weather.icon + "@2x.png";
-                var date = moment.unix(data.list[i].dt).format("MMMM Do, YYYY");
-                var temp = plzNotKelvin(data.list[i].main.temp);
-                var humidity = data.list[i].main.humidity;
-                var windSpeed = mphWind(data.list[i].wind.speed);
+            // Gets the forecast weather data.
+            $.get(foreUrl, function(data) {
+                
+                for (var i = 0; i < 5; i++) {
+                    var icon = "http://openweathermap.org/img/wn/" + data.daily[i].weather.icon + "@2x.png";
+                    var date = moment.unix(data.daily[i].dt).format("MMMM Do");
+                    var temp = plzNotKelvin(data.daily[i].temp.day);
+                    var humidity = data.daily[i].humidity;
+                    var windSpeed = mphWind(data.daily[i].wind_speed);
 
-                // TODO: Place the weather information into appropriate HTML elements.
-                var forecastNum = i + 1;
-                $("h1.forecast" + forecastNum).text(date);
-                $("p.forecast" + forecastNum).html("Temperature: " + temp + "F<br />Humidity: " + humidity + "%<br />" + "Wind Speed: " + windSpeed + "mph");
-            }
+                    // TODO: Place the weather information into appropriate HTML elements.
+                    var forecastNum = i + 1;
+                    $("h1.forecast" + forecastNum).text(date);
+                    $("p.forecast" + forecastNum).html("Temperature: " + temp + " F<br />Humidity: " + humidity + "%<br />" + "Wind Speed: " + windSpeed + "mph");
+                }
+            });
+
         });
+        
     });
 });
 
