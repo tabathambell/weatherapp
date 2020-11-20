@@ -1,31 +1,32 @@
 $(document).ready(function() {
     var citiesList = "";
+    //localStorage.removeItem("citiesList");
     if (localStorage.getItem("citiesList") !== null) {
         citiesList = localStorage.getItem("citiesList");
         makeCityButtons(citiesList);
     }
 
-    $("#weatherButton .city").click(function() {
+    $(document).on("click", "#weatherButton,.city", function() {
         var cityName = "";
         if ($(this).hasClass("city")) {
-            cityName = $(this).val();
+            cityName = $(this).text();
         } else {
-            cityName = $("input.form control").val();
+            cityName = $("input.form-control").val();
         }
-
-        var cityName = $("input.form-control").val();
+        
         var url = "http://api.openweathermap.org/data/2.5/weather?q=" + cityName + "&appid=737d27db0b50c8b167d4a3cda67efcfe";
-    
+        
         // Gets the current weather data.
         $.get(url, function(data) {
-            if (citiesList == "") {
-                citiesList += cityName;
-            } else {
-                citiesList += "," + cityName;
+            if (!citiesList.includes(cityName)) {
+                if (citiesList == "") {
+                    citiesList += cityName;
+                } else {
+                    citiesList += "," + cityName;
+                }
+                localStorage.setItem("citiesList", citiesList);
+                $(".history").append("<button class='city'>" + cityName + "</button>");
             }
-
-            localStorage.setItem("citiesList", citiesList);
-            $(".history").append("<button class='city'>" + cityName + "</button>")
 
             var icon = "http://openweathermap.org/img/wn/" + data.weather[0].icon + "@2x.png";
             var temp = plzNotKelvin(data.main.temp);
@@ -64,7 +65,7 @@ $(document).ready(function() {
             $.get(foreUrl, function(data) {
                 
                 for (var i = 0; i < 5; i++) {
-                    var icon = "http://openweathermap.org/img/wn/" + data.daily[i].weather.icon + "@2x.png";
+                    var icon = "http://openweathermap.org/img/wn/" + data.daily[i].weather[0].icon + "@2x.png";
                     var date = moment.unix(data.daily[i].dt).format("MMMM Do");
                     var temp = plzNotKelvin(data.daily[i].temp.day);
                     var humidity = data.daily[i].humidity;
@@ -74,11 +75,10 @@ $(document).ready(function() {
                     var forecastNum = i + 1;
                     $("h1.forecast" + forecastNum).text(date);
                     $("p.forecast" + forecastNum).html("Temperature: " + temp + " F<br />Humidity: " + humidity + "%<br />" + "Wind Speed: " + windSpeed + "mph");
+                    
                 }
             });
-
         });
-        
     });
 });
 
@@ -94,7 +94,7 @@ function mphWind(windSpeedMS) {
 
 function makeCityButtons(list) {
     var listArray = list.split(",");
-        for (i = 0; i < listArray.length; i++) {
-            $(".history").append("<button class='city'>" + listArray[i] + "</button>")
-        }
+    for (i = 0; i < listArray.length; i++) {
+        $(".history").append("<button class='city'>" + listArray[i] + "</button>");
+    }
 }
