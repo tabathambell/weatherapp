@@ -1,19 +1,8 @@
-/*
 
-DONE: Current weather data.
-DONE: Get UV data (new API call).
-TODO: Get forecast data (new API call).
-TODO: Organize HTML elements.
-TODO: City search
-TODO: Search history
-TODO: UV colors.
-
-*/
 
 $(document).ready(function() {
-    // TODO: Add a search bar in the HTML and use it for the q= parameters in the API endpoint URLs for the city name.
-    // TODO: Wrap all this in a button click event.
-    // TODO: On button click, add to search history.
+
+    $("#weatherButton").click(function() {
     var url = "http://api.openweathermap.org/data/2.5/weather?q=edmonton&appid=737d27db0b50c8b167d4a3cda67efcfe";
     var foreUrl = "http://api.openweathermap.org/data/2.5/forecast/daily?q=edmonton&cnt=5&appid=737d27db0b50c8b167d4a3cda67efcfe";
     
@@ -75,3 +64,5 @@ function plzNotKelvin(degreesK) {
 function mphWind(windSpeedMS) {
     return windSpeedMS * 2.237;
 }
+
+});
