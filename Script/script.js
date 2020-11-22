@@ -25,7 +25,7 @@ $(document).ready(function() {
                     citiesList += "," + cityName;
                 }
                 localStorage.setItem("citiesList", citiesList);
-                $(".history").append("<button class='city'>" + cityName + "</button>");
+                $(".history").append("<button class='city btn btn-success'>" + cityName + "</button>");
             }
 
             var icon = "http://openweathermap.org/img/wn/" + data.weather[0].icon + "@2x.png";
@@ -95,6 +95,6 @@ function mphWind(windSpeedMS) {
 function makeCityButtons(list) {
     var listArray = list.split(",");
     for (i = 0; i < listArray.length; i++) {
-        $(".history").append("<button class='city'>" + listArray[i] + "</button>");
+        $(".history").append("<button class='city btn btn-success'>" + listArray[i] + "</button>");
     }
 }
