@@ -14,7 +14,7 @@ $(document).ready(function() {
             cityName = $("input.form-control").val();
         }
         
-        var url = "http://api.openweathermap.org/data/2.5/weather?q=" + cityName + "&appid=737d27db0b50c8b167d4a3cda67efcfe";
+        var url = "https://api.openweathermap.org/data/2.5/weather?q=" + cityName + "&appid=737d27db0b50c8b167d4a3cda67efcfe";
         
         // Gets the current weather data.
         $.get(url, function(data) {
@@ -28,7 +28,7 @@ $(document).ready(function() {
                 $(".history").append("<button class='city btn btn-success'>" + cityName + "</button>");
             }
 
-            var icon = "http://openweathermap.org/img/wn/" + data.weather[0].icon + "@2x.png";
+            var icon = "https://openweathermap.org/img/wn/" + data.weather[0].icon + "@2x.png";
             var temp = plzNotKelvin(data.main.temp);
             var feelsLike = plzNotKelvin(data.main.feels_like);
             var humidity = data.main.humidity;
@@ -36,8 +36,8 @@ $(document).ready(function() {
             var lat = data.coord.lat;
             var lon = data.coord.lon;
 
-            var uvUrl = "http://api.openweathermap.org/data/2.5/uvi?lat=" + lat + "&lon=" + lon + "&appid=737d27db0b50c8b167d4a3cda67efcfe";
-            var foreUrl = "http://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon=" + lon + "&exclude=current,minutely,hourly,alerts&appid=737d27db0b50c8b167d4a3cda67efcfe";
+            var uvUrl = "https://api.openweathermap.org/data/2.5/uvi?lat=" + lat + "&lon=" + lon + "&appid=737d27db0b50c8b167d4a3cda67efcfe";
+            var foreUrl = "https://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon=" + lon + "&exclude=current,minutely,hourly,alerts&appid=737d27db0b50c8b167d4a3cda67efcfe";
 
             // Gets the UV Index.
             $.get(uvUrl, function(data) {
@@ -65,7 +65,7 @@ $(document).ready(function() {
             $.get(foreUrl, function(data) {
                 
                 for (var i = 0; i < 5; i++) {
-                    var icon = "http://openweathermap.org/img/wn/" + data.daily[i].weather[0].icon + "@2x.png";
+                    var icon = "https://openweathermap.org/img/wn/" + data.daily[i].weather[0].icon + "@2x.png";
                     var date = moment.unix(data.daily[i].dt).format("MMMM Do");
                     var temp = plzNotKelvin(data.daily[i].temp.day);
                     var humidity = data.daily[i].humidity;
